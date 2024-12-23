@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -24,6 +25,7 @@ const CreatePost = () => {
       );
       setSummary(response.data.summary);
       setSuccess(true);
+      toast.success("Post created successfully!");
       navigate("/all-posts");
     } catch (err) {
       setError(err.response?.data?.message || "An error occurred");

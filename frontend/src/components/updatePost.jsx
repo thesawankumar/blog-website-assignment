@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const UpdatePost = () => {
   const { id } = useParams(); 
@@ -15,6 +16,7 @@ const UpdatePost = () => {
           `${import.meta.env.VITE_BASE_URL}/api/posts/${id}`
         );
         setPost(response.data);
+        toast.success("Post fetched successfully!");
       } catch (err) {
         console.error("Error fetching post:", err);
       } finally {
@@ -33,7 +35,7 @@ const UpdatePost = () => {
     e.preventDefault();
     try {
       await axios.put(`${import.meta.env.VITE_BASE_URL}/api/posts/${id}`, post);
-      alert("Post updated successfully!");
+      toast.success("Post updated successfully!");
       navigate("/"); // Navigate back to the posts page
     } catch (err) {
       console.error("Error updating post:", err);

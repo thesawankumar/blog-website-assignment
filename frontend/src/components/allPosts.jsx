@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -15,6 +16,7 @@ const AllPosts = () => {
           `${import.meta.env.VITE_BASE_URL}/api/posts/all-posts`
         );
         setPosts(response.data);
+        toast.success("Posts fetched successfully!");
       } catch (err) {
         setError(
           err.response?.data?.message ||

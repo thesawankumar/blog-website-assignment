@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -28,7 +29,8 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    navigate("/"); // Redirect to home or login page
+    toast.success("Logged out successfully!");
+    navigate("/");
   };
 
   return (

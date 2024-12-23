@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserDataContext } from "../context/UserContext";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ const Signup = () => {
       const data = response.data;
       setUser(data.user);
       localStorage.setItem("token", data.token);
+      toast.success("Account created successfully!");
       navigate("/");
     }
     setEmail("");

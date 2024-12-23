@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserDataContext } from "../context/UserContext";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ const Login = () => {
       const data = response.data;
       setUser(data.user);
       localStorage.setItem("token", data.token);
+      toast.success("Login successful!");
       navigate("/");
     }
 
